@@ -23,12 +23,6 @@ spec:
     nfs:
       server: "192.168.1.110"
       path: "/zfspool/filestore/kubedata/dynamic"
-      mountOptions:
-      #volumeName: nfs-subdir-external-provisioner-root
-  # Reclaim policy for the main nfs volume
-  reclaimPolicy: Retain
     storageClass:
       defaultClass: false
-      name: nfs-pve110-dynamic
-      create: true
-      
+      name: pve110-dynamic-nfs
