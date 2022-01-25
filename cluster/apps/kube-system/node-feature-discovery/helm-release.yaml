@@ -66,17 +66,15 @@ spec:
                     vendor: ["8086"]
       annotations:
         configmap.reloader.stakater.com/reload: "nfd-worker-conf"
-      tolerations:
-        - key: arm
-          operator: Exists
-        - key: "node-role.kubernetes.io/master"
-          operator: "Exists"
-        - effect: "NoExecute"
-          operator: "Exists"
-        - effect: "NoSchedule"
-          operator: "Exists"
-    master:
-      replicaCount: 1
-      tolerations:
-        - key: arm
-          operator: Exists
+    #  tolerations:
+    #    - key: "node-role.kubernetes.io/master"
+    #      operator: "Exists"
+    #    - effect: "NoExecute"
+    #      operator: "Exists"
+    #    - effect: "NoSchedule"
+    #      operator: "Exists"
+    #master:
+    #  replicaCount: 1
+    #  tolerations:
+    #    - key: arm
+    #      operator: Exists
