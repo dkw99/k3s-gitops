@@ -6,3 +6,5 @@ resources:
   - reflector
   - reloader
   - nfs-client-provisioner
+  - node-feature-discovery
+  
