@@ -5,4 +5,4 @@ resources:
   - metrics-server
   - reflector
   - reloader
-  - nfs-client-provisioner
+  # - nfs-client-provisioner
