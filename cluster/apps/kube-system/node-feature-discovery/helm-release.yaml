@@ -10,71 +10,79 @@ spec:
     spec:
       # renovate: registryUrl=https://kubernetes-sigs.github.io/node-feature-discovery/charts
       chart: node-feature-discovery
-      version: 0.10.1
+      version: 0.9.0
       sourceRef:
         kind: HelmRepository
-        name: kubernetes-sigs-nfd-charts
+        name: node-feature-discovery-charts
         namespace: flux-system
-      interval: 5m
-  install:
-    crds: CreateReplace
-  upgrade:
-    crds: CreateReplace
   values:
-    nodeFeatureRule:
-      createCRD: true
+    master:
+      tolerations:
+      - key: "node-role.kubernetes.io/master"
+        operator: "Equal"
+        value: ""
+        effect: "NoSchedule"
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+              - key: "node-role.kubernetes.io/master"
+                operator: In
+                values: [""]
     worker:
-      config:
+      config: |-
         core:
           sources:
-            - custom
-            - pci
-            - usb
+          - custom
+          - pci
+          - usb
         sources:
           usb:
             deviceClassWhitelist:
-              - "02"
-              - "0e"
-              - "ef"
-              - "fe"
-              - "ff"
+            - "02"
+            - "03"
+            - "0e"
+            - "ef"
+            - "fe"
+            - "ff"
             deviceLabelFields:
-              - "class"
-              - "vendor"
-              - "device"
+            - "class"
+            - "vendor"
+            - "device"
           custom:
-            - name: "alarmdecoder"
-              matchOn:
-                - usbId:
-                    class: ["ff"]
-                    vendor: ["0403"]
-                    device: ["6015"]
-            - name: "zwave"
-              matchOn:
-                - usbId:
-                    class: ["02"]
-                    vendor: ["0658"]
-                    device: ["0200"]
-            - name: "coral-tpu"
-              matchOn:
-                - usbId:
-                    vendor: ["1a6e", "18d1"]
-            - name: "intel-gpu"
-              matchOn:
-                - pciId:
-                    class: ["0300"]
-                    vendor: ["8086"]
+          - name: "zwave"
+            matchOn:
+            - usbId:
+                class: ["02"]
+                vendor: ["0658"]
+                device: ["0200"]
+          - name: "intel-gpu"
+            matchOn:
+            - pciId:
+                class: ["0300"]
+                vendor: ["8086"]
+          - name: "coral-tpu"
+            matchOn:
+            - usbId:
+                vendor: ["1a6e", "18d1"]
+          - name: "flight-aware"
+            matchOn:
+            - usbId:
+                class: ["ff"]
+                vendor: ["0bda"]
+                device: ["2832"]
+          - name: "zigbee"
+            matchOn:
+            - usbId:
+                class: ["ff"]
+                vendor: ["1a86"]
+                device: ["7523"]
       annotations:
         configmap.reloader.stakater.com/reload: "nfd-worker-conf"
-    #  tolerations:
-    #    - key: "node-role.kubernetes.io/master"
-    #      operator: "Exists"
-    #    - effect: "NoExecute"
-    #      operator: "Exists"
-    #    - effect: "NoSchedule"
-    #      operator: "Exists"
-    master:
-      replicaCount: 1
       tolerations:
-        - key: " node-role.kubernetes.io/master"
-          operator: Exists
+      - effect: "NoExecute"
+        operator: "Exists"
+      - effect: "NoSchedule"
+        operator: "Exists"
