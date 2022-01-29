@@ -41,10 +41,10 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
-        tls:
-          - hosts:
-              - hass.${SECRET_DOMAIN}
-            secretName: hass-tls
+#        tls:
+#          - hosts:
+#              - hass.${SECRET_DOMAIN}
+#            secretName: hass-tls
     persistence:
       config:
         enabled: true
@@ -77,10 +77,10 @@ spec:
               paths:
                 - path: /
                   pathType: Prefix
-          tls:
-            - hosts:
-                - hass-config.${SECRET_DOMAIN}
-              secretName: hass-config-tls
+#          tls:
+#            - hosts:
+#                - hass-config.${SECRET_DOMAIN}
+#              secretName: hass-config-tls
         volumeMounts:
           - name: config
             mountPath: /config
