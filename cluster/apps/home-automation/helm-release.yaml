@@ -47,7 +47,7 @@ spec:
 #            secretName: hass-tls
     persistence:
       config:
-        enabled: true
+        enabled: false
         existingClaim: home-assistant-config
 #     addons:
 #       codeserver:
