@@ -30,14 +30,14 @@ spec:
         enabled: false
     ingress:
       main:
-        enabled: False
+        enabled: true
 #       annotations:
 #          external-dns.alpha.kubernetes.io/target: ${DOMAIN}
 #          cert-manager.io/cluster-issuer: letsencrypt-production
 #          hajimari.io/enable: "true"
 #          hajimari.io/icon: home-assistant
         hosts:
-          - host: hass.${SECRET_DOMAIN}
+          - host: hass.k3s.lan
             paths:
               - path: /
                 pathType: Prefix
