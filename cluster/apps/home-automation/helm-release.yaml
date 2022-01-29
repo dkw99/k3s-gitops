@@ -34,8 +34,8 @@ spec:
         annotations:
 #          external-dns.alpha.kubernetes.io/target: ${DOMAIN}
 #          cert-manager.io/cluster-issuer: letsencrypt-production
-          hajimari.io/enable: "true"
-          hajimari.io/icon: home-assistant
+#          hajimari.io/enable: "true"
+#          hajimari.io/icon: home-assistant
         hosts:
           - host: hass.${SECRET_DOMAIN}
             paths:
@@ -63,8 +63,8 @@ spec:
           - /config/.vscode
           - --extensions-dir
           - /config/.vscode
-        git:
-          deployKeySecret: ${HASS_GIT_TOKEN}
+#        git:
+#          deployKeySecret: ${HASS_GIT_TOKEN}
         ingress:
           enabled: true
           annotations:
