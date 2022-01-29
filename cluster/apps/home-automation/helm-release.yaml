@@ -64,7 +64,7 @@ spec:
           - --extensions-dir
           - /config/.vscode
         git:
-          deployKeySecret: home-assistant-code-server
+          deployKeySecret: ${HASS_GIT_TOKEN}
         ingress:
           enabled: true
           annotations:
