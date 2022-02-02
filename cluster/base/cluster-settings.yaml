@@ -5,5 +5,15 @@ metadata:
   name: cluster-settings
   namespace: flux-system
 data:
-  METALLB_LB_RANGE: 192.168.16.230-192.168.16.245
-  METALLB_TRAEFIK_ADDR: 192.168.16.230
+  LOCAL_DOMAIN: wiseslamon.net
+  CLUSTER_DOMAIN: cluster.local
+  SERVER_CIDR: "192.168.16.0/24"
+  ROUTER_IP: "192.168.16.1"
+  INGRESS_NGINX_IP: "10.44.0.1"
+  COREDNS_IP: "10.44.0.4"
+  ADGUARD_IP: "10.44.0.5"
+  BLOCKY_IP: "10.44.0.6"
+  EMQX_IP: "10.44.0.16"
+  VERNEMQ_IP: "10.44.0.17"
+  HASS_IP: "10.44.0.30"
+  UNIFI_CONTROLLER_URL: https://unifi.wisesalmon.net:8443/
