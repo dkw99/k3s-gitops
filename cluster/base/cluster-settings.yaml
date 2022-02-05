@@ -5,8 +5,8 @@ metadata:
   name: cluster-settings
   namespace: flux-system
 data:
-  LOCAL_DOMAIN: wiseslamon.net
-  CLUSTER_DOMAIN: cluster.local
+  LOCAL_DOMAIN: ws
+  CLUSTER_DOMAIN: cluster.ws
   SERVER_CIDR: "192.168.16.0/24"
   ROUTER_IP: "192.168.16.1"
   INGRESS_NGINX_IP: "10.44.0.1"
